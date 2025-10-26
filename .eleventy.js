@@ -6,7 +6,7 @@ module.exports = function(eleventyConfig) {
     dir: {
       input: "src",
       includes: "_includes",
-      layouts: "_includes/layouts",
+      // ⬅️ remove `layouts: "_includes/layouts",`
       output: "_site"
     },
     markdownTemplateEngine: "njk",
