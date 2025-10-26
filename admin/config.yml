@@ -1,0 +1,86 @@
+backend:
+  name: git-gateway
+  branch: main
+
+site_url: https://yourdomain.com
+logo_url: /uploads/admin-logo.png
+
+media_folder: "static/uploads"
+public_folder: "/uploads"
+
+publish_mode: editorial_workflow
+slug:
+  encoding: unicode
+  clean_accents: true
+
+collections:
+  - name: posts
+    label: Posts
+    folder: content/posts
+    create: true
+    delete: true
+    extension: md
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Publish Date, name: date, widget: datetime }
+      - { label: Cover Image, name: cover, widget: image, required: false }
+      - { label: Summary, name: summary, widget: text, required: false }
+      - { label: Tags, name: tags, widget: list, required: false }
+      - { label: Body, name: body, widget: markdown }
+      - { label: SEO Description, name: description, widget: string, required: false }
+      - { label: Visibility, name: visibility, widget: select, options: [public, private], default: public }
+
+  - name: pages
+    label: Pages
+    files:
+      - label: About
+        name: about
+        file: content/pages/about.md
+        fields:
+          - { label: Title, name: title, widget: string, default: About }
+          - { label: Body, name: body, widget: markdown }
+      - label: Media Kit
+        name: media
+        file: content/pages/media.md
+        fields:
+          - { label: Title, name: title, widget: string, default: Media Kit }
+          - { label: Body, name: body, widget: markdown }
+
+  - name: files
+    label: Files (Uploads)
+    folder: static/uploads/files
+    create: true
+    delete: true
+    extension: json
+    slug: "{{slug}}"
+    fields:
+      - { label: Label, name: label, widget: string }
+      - { label: File, name: file, widget: file }
+      - { label: Notes, name: notes, widget: text, required: false }
+
+  - name: design
+    label: Design & Settings
+    files:
+      - label: Theme
+        name: theme
+        file: content/settings/theme.json
+        fields:
+          - { label: Brand Color, name: brand, widget: string, default: "#3E7CB1" }
+          - { label: Accent Color, name: accent, widget: string, default: "#E3B23C" }
+          - { label: Background, name: bg, widget: string, default: "#F7F9FB" }
+          - { label: Text, name: text, widget: string, default: "#2B2D42" }
+          - { label: Muted, name: muted, widget: string, default: "#6C757D" }
+          - { label: Hero Title, name: heroTitle, widget: string, default: "Change of Heart" }
+          - { label: Hero Subtitle, name: heroSubtitle, widget: text, default: "Welcome to the personal writings and reflections of Hilla Gohary." }
+      - label: Navigation
+        name: navigation
+        file: content/settings/navigation.json
+        fields:
+          - label: Links
+            name: links
+            widget: list
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: URL, name: url, widget: string }
+              - { label: Show, name: show, widget: boolean, default: true }

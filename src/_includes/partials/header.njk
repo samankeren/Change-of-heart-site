@@ -1,0 +1,13 @@
+<header class="site">
+  <div class="container">
+    <nav class="wrap" aria-label="Primary">
+      <a class="brand" href="/" style="font-weight:800;letter-spacing:.3px">Change of Heart</a>
+      <ul>
+        {% for link in navigation.links if link.show %}
+          <li><a href="{{ link.url }}">{{ link.label }}</a></li>
+        {% endfor %}
+        <li><a href="/admin/">Login</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

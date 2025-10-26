@@ -1,0 +1,9 @@
+---
+layout: layouts/base.njk
+---
+<article>
+  <p style="opacity:.7">{{ page.date | prettyDate }}</p>
+  <h1>{{ title }}</h1>
+  {% if cover %}<img src="{{ cover }}" alt="" style="border-radius:12px;max-width:100%;margin:1rem 0">{% endif %}
+  <div class="post-body">{{ content | safe }}</div>
+</article>

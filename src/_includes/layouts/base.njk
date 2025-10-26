@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {% include "partials/head.njk" %}
+</head>
+<body>
+  {% include "partials/header.njk" %}
+  <main class="container">
+    {{ content | safe }}
+  </main>
+  <footer class="container" style="opacity:.8;padding:2rem 0">© {{ "now" | date("yyyy") }} Hilla Gohary.</footer>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "links": [
+    {
+      "label": "Books",
+      "url": "#books",
+      "show": true
+    },
+    {
+      "label": "About",
+      "url": "/about/",
+      "show": true
+    },
+    {
+      "label": "Blog",
+      "url": "/blog/",
+      "show": true
+    },
+    {
+      "label": "Events",
+      "url": "#events",
+      "show": true
+    },
+    {
+      "label": "Contact",
+      "url": "#contact",
+      "show": true
+    }
+  ]
+}
