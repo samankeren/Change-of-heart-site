@@ -5,7 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Site Admin</title>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 </head>
-<body></body>
+<body>
+  <!-- Netlify Identity widget (handles login UI) -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
+
+  <!-- Decap CMS (load after body exists) -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js" defer></script>
+
+  <!-- Optional: auto-reload after login -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', function(user){
+          if (!user) {
+            window.netlifyIdentity.on('login', function(){ window.location.reload(); });
+          }
+        });
+      }
+    });
+  </script>
+</body>
 </html>
