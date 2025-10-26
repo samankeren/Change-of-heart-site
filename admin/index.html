@@ -5,23 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>Site Admin</title>
-</head>
-<body>
-  <!-- Netlify Identity widget (handles login UI) -->
+
+  <!-- Load Netlify Identity first -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
 
-  <!-- Decap CMS (load after body exists) -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js" defer></script>
+  <!-- Tell Decap we will init manually after the page is ready -->
+  <script>window.CMS_MANUAL_INIT = true;</script>
+</head>
+<body>
+  <!-- Decap CMS (pin to a known-stable build) -->
+  <script src="https://unpkg.com/decap-cms@3.6.2/dist/decap-cms.js" defer></script>
 
-  <!-- Optional: auto-reload after login -->
+  <!-- Manual init AFTER scripts load -->
   <script>
-    document.addEventListener('DOMContentLoaded', function(){
+    document.addEventListener('DOMContentLoaded', function () {
+      // Auto-refresh after login
       if (window.netlifyIdentity) {
-        window.netlifyIdentity.on('init', function(user){
+        window.netlifyIdentity.on('init', user => {
           if (!user) {
-            window.netlifyIdentity.on('login', function(){ window.location.reload(); });
+            window.netlifyIdentity.on('login', () => { document.location.reload(); });
           }
         });
+      }
+      // Initialize CMS and point to our config explicitly
+      if (window.CMS && window.CMS.init) {
+        window.CMS.init({ configPath: 'admin/config.yml' });
       }
     });
   </script>
